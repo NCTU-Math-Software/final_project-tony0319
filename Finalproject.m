@@ -1,5 +1,6 @@
 X=imread('aa.jpg');
-
+image(X);
+disp('Press whitespace to start the game.');
 A=X(1:75,1:75,:);
 B=X(1:75,76:150,:);
 C=X(1:75,151:225,:);
@@ -10,7 +11,6 @@ G=X(151:225,1:75,:);
 H=X(151:225,76:150,:);
 I=X(151:225,151:225,:);
 correctForm=[1 2 3 4 5 6 7 8 9];
-n=0;
 Rand=randperm(9);
 space=[76 76];
 
@@ -217,8 +217,11 @@ for ii=1:9
             end
     end
 end
-disp(white);
-image(Image);
+
+[gy,gx,BUTTON] = ginput(1);
+if BUTTON==32
+    image(Image);
+end
 test=1;
 for ii=1:9
     if Rand(ii)~=correctForm(ii)
@@ -226,426 +229,465 @@ for ii=1:9
         break
     end
 end
+
 while test==2
+    n=0;
     [gy,gx,BUTTON] = ginput(1);
-    if BUTTON==28        %¥ª
+    if BUTTON==28        %å·¦
         if space(2)<150
            switch space(1)
                case 1
                    switch space(2)
-                       case 1                    %²Ä¤@®æ
-                           switch Rand(2)
-                               case 1
-                                   Image(1:75,1:75,:)=A;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 2
-                                   Image(1:75,1:75,:)=B;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 3
-                                   Image(1:75,1:75,:)=C;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 4
-                                   Image(1:75,1:75,:)=D;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 5
-                                   Image(1:75,1:75,:)=E;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 6
-                                   Image(1:75,1:75,:)=F;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                               case 7
-                                   Image(1:75,1:75,:)=G;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;    
-                               case 8
-                                   Image(1:75,1:75,:)=H;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
-                              case 9
-                                   Image(1:75,1:75,:)=I;
-                                   Image(1:75,76:150,:)=256;
-                                   move=Rand(1);
-                                   Rand(1)=Rand(2);
-                                   Rand(2)=move;
+                       case 1                    %ç¬¬ä¸€æ ¼
+                           while n<74
+                               for jj=1:75
+                                   for ii=1:75
+                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
+                                   end  
+                               end
+                               for ii=1:75
+                                   Iamge(ii,150-n)=256;
+                               end
+                               image(Iamge);drawnow
+                               n=n+1;
                            end
-                       case 76       %²Ä¤G®æ
-                           switch Rand(3)
-                               case 1
-                                   Image(1:75,76:150,:)=A;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 2
-                                   Image(1:75,76:150,:)=B;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 3
-                                   Image(1:75,76:150,:)=C;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;                                   
-                               case 4
-                                   Image(1:75,76:150,:)=D;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 5
-                                   Image(1:75,76:150,:)=E;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 6
-                                   Image(1:75,76:150,:)=F;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 7
-                                   Image(1:75,76:150,:)=G;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 8
-                                   Image(1:75,76:150,:)=H;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;
-                               case 9
-                                   Image(1:75,76:150,:)=I;
-                                   Image(1:75,151:225,:)=256;
-                                   move=Rand(2);
-                                   Rand(2)=Rand(3);
-                                   Rand(3)=move;                          
+                           move=Rand(1);
+                           Rand(1)=Rand(2);
+                           Rand(2)=move;
+                       case 76       %ç¬¬äºŒæ ¼
+                           while n<74
+                               for jj=1:75
+                                   for ii=1:75
+                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
+                                   end    
+                               end
+                               for ii=1:75
+                                   Iamge(ii,225-n)=256;
+                               end
+                               image(Iamge);drawnow
+                               n=n+1;
                            end
+                           move=Rand(2);
+                           Rand(2)=Rand(3);
+                           Rand(3)=move;
                    end
                case 76
                    switch space(2)
                        case 1
-                           switch Rand(5)
-                               case 1
-                                   Image(76:150,1:75,:)=A;
-                                   Image(76:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 2
-                                   Image(76:150,1:75,:)=B;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 3
-                                   Image(76:150,1:75,:)=C;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 4
-                                   Image(76:150,1:75,:)=D;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 5
-                                   Image(76:150,1:75,:)=E;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 6
-                                   Image(76:150,1:75,:)=F;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 7
-                                   Image(76:150,1:75,:)=G;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 8
-                                   Image(76:150,1:75,:)=H;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
-                               case 9
-                                   Image(76:150,1:75,:)=I;
-                                   Image(7:150,76:150,:)=256;
-                                   move=Rand(4);
-                                   Rand(4)=Rand(5);
-                                   Rand(5)=move;
+                          while n<74
+                               for jj=1:75
+                                   for ii=76:150
+                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
+                                   end  
+                               end
+                               for ii=76:150
+                                   Iamge(ii:150-n)=256;
+                               end
+                                   image(Iamge);drawnow
+                                   n=n+1;
                            end
+                           move=Rand(4);
+                           Rand(4)=Rand(5);
+                           Rand(5)=move;
                        case 76
-                           switch Rand(6)
-                               case 1
-                                   Image(76:150,76:150,:)=A;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 2
-                                   Image(76:150,76:150,:)=B;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 3
-                                   Image(76:150,76:150,:)=C;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 4
-                                   Image(76:150,76:150,:)=D;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 5
-                                   Image(76:150,76:150,:)=E;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 6
-                                   Image(76:150,76:150,:)=F;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 7
-                                   Image(76:150,76:150,:)=G;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 8
-                                   Image(76:150,76:150,:)=H;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
-                              case 9
-                                   Image(76:150,76:150,:)=I;
-                                   Image(76:150,151:225,:)=256;
-                                   move=Rand(5);
-                                   Rand(5)=Rand(6);
-                                   Rand(6)=move;
+                            while n<74
+                               for jj=1:75
+                                   for ii=76:150
+                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
+                                   end    
+                               end
+                               for ii=76:150
+                                   Iamge(ii,225-n)=256;
+                               end
+                               image(Iamge);drawnow
+                               n=n+1;
                            end
+                           move=Rand(5);
+                           Rand(5)=Rand(6);
+                           Rand(6)=move;
                    end
                case 151
                    switch space(2)
                        case 1
-                           switch Rand(8)
-                               case 1
-                                   Image(151:225,1:75,:)=A;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 2
-                                   Image(151:225,1:75,:)=B;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 3
-                                   Image(151:225,1:75,:)=C;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 4
-                                   Image(151:225,1:75,:)=D;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 5
-                                   Image(151:225,1:75,:)=E;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 6
-                                   Image(151:225,1:75,:)=F;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 7
-                                   Image(151:225,1:75,:)=G;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 8
-                                   Image(151:225,1:75,:)=H;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
-                               case 9
-                                   Image(151:225,1:75,:)=I;
-                                   Image(151:225,76:150,:)=256;
-                                   move=Rand(7);
-                                   Rand(7)=Rand(8);
-                                   Rand(8)=move;
+                          while n<74
+                               for jj=1:75
+                                   for ii=151:225
+                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
+                                   end  
+                               end
+                               for ii=151:225
+                                   Iamge(ii,150-n)=256;
+                               end
+                               image(Iamge);drawnow
+                               n=n+1;
                            end
+                           move=Rand(7);
+                           Rand(7)=Rand(8);
+                           Rand(8)=move;
                        case 76
-                           switch Rand(9)
-                               case 1
-                                   Image(151:225,76:150,:)=A;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 2
-                                   Image(151:225,76:150,:)=B;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 3
-                                   Image(151:225,76:150,:)=C;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 4
-                                   Image(151:225,76:150,:)=D;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 5
-                                   Image(151:225,76:150,:)=E;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 6
-                                   Image(151:225,76:150,:)=F;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 7
-                                   Image(151:225,76:150,:)=G;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 8
-                                   Image(151:225,76:150,:)=H;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
-                               case 9
-                                   Image(151:225,76:150,:)=I;
-                                   Image(151:225,151:225,:)=256;
-                                   move=Rand(8);
-                                   Rand(8)=Rand(9);
-                                   Rand(9)=move;
+                            while n<74
+                               for jj=1:75
+                                   for ii=151:225
+                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
+                                   end    
+                               end
+                               for ii=151:225
+                                   Iamge(ii,225-n)=256;
+                               end
+                               image(Iamge);drawnow
+                               n=n+1;
                            end
+                           move=Rand(8);
+                           Rand(8)=Rand(9);
+                           Rand(9)=move;
                    end
-           end 
-            space(2)=space(2)+75;
+           end
+           space(2)=space(2)+75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
     
-    elseif BUTTON==29
+    elseif BUTTON==29  
         if space(2)>1
-            switch space(1)
-                case 1
-                    switch space(2)
-                        case 76
-                            switch Rand(1)
-                                case 1
-                                    Image(1:75,76:150,:)=A;
-                                    Image(1:)
-                        case 151
-                            
-                    end
+            switch space(2)
                 case 76
-                    switch space(2)
+                    switch space(1)
+                        case 1
+                            while n<75
+                            for jj=1:75
+                                for ii=1:75
+                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
+                                end
+                            end
+                            for ii=1:75
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(2);
+                            Rand(2)=Rand(1);
+                            Rand(1)=move;
                         case 76
-                            
+                            while n<75
+                            for jj=1:75
+                                for ii=76:150
+                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
+                                end
+                            end
+                            for ii=76:150
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(5);
+                            Rand(5)=Rand(4);
+                            Rand(4)=move;
                         case 151
+                            while n<75
+                            for jj=1:75
+                                for ii=151:225
+                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
+                                end
+                            end
+                            for ii=151:225
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(8);
+                            Rand(8)=Rand(7);
+                            Rand(7)=move;
                     end
                 case 151
-                    switch space(2)
+                    switch space(1)
+                        case 1
+                            while n<75
+                            for jj=1:75
+                                for ii=1:75
+                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
+                                end
+                            end
+                            for ii=1:75
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(3);
+                            Rand(3)=Rand(2);
+                            Rand(2)=move;
                         case 76
-                            
+                            while n<75
+                            for jj=1:75
+                                for ii=76:150
+                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
+                                end
+                            end
+                            for ii=76:150
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(6);
+                            Rand(6)=Rand(5);
+                            Rand(5)=move;
                         case 151
+                            while n<75
+                            for jj=1:75
+                                for ii=151:225
+                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
+                                end
+                            end
+                            for ii=151:225
+                                Iamge(ii:n+1)=256;
+                            end
+                            image(Iamge);drawnow
+                            n=n+1;
+                            end
+                            move=Rand(9);
+                            Rand(9)=Rand(8);
+                            Rand(8)=move;
                     end
             end
-            
-            
             space(2)=space(2)-75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
-    elseif BUTTON==30
+    elseif BUTTON==30     %å‘ä¸Š
         if space(1)<150
-            
-            
-            
-            
-            
-            
-            
-            
+            switch space(1)
+                case 1
+                    switch space(2)
+                        case 1
+                            while n<74
+                               for ii=1:75
+                                   for jj=1:75
+                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
+                                   end
+                               end
+                              for jj=1:75
+                                  Iamge(150-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(1);
+                            Rand(1)=Rand(4);
+                            Rand(4)=move;
+                        case 76
+                             while n<74
+                               for ii=1:75
+                                   for jj=76:150
+                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
+                                   end
+                               end
+                              for jj=76:150
+                                  Iamge(150-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(2);
+                            Rand(2)=Rand(5);
+                            Rand(5)=move;
+                        case 151
+                             while n<74
+                               for ii=1:75
+                                   for jj=151:225
+                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
+                                   end
+                               end
+                              for jj=151:225
+                                  Iamge(150-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(3);
+                            Rand(3)=Rand(6);
+                            Rand(6)=move;
+                    end
+                case 76
+                    switch space(2)
+                        case 1
+                             while n<74
+                               for ii=1:75
+                                   for jj=1:75
+                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
+                                   end
+                               end
+                              for jj=1:75
+                                  Iamge(225-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(4);
+                            Rand(4)=Rand(7);
+                            Rand(7)=move;
+                        case 76
+                            while n<75
+                               for ii=1:75
+                                   for jj=76:150
+                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
+                                   end
+                               end
+                              for jj=76:150
+                                  Iamge(225-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(5);
+                            Rand(5)=Rand(8);
+                            Rand(8)=move;
+                        case 151
+                            while n<74
+                               for ii=1:75
+                                   for jj=151:225
+                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
+                                   end
+                               end
+                              for jj=151:225
+                                  Iamge(225-n,jj)=256;
+                              end
+                              n=n+1;
+                              image(Image);drawnow
+                            end
+                            move=Rand(6);
+                            Rand(6)=Rand(9);
+                            Rand(9)=move;
+                    end
+            end
             space(1)=space(1)+75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
     elseif BUTTON==31
          if space(1)>1
+             switch space(1)
+                 case 76
+                     switch space(2)
+                         case 1
+                             while n<=74
+                             for ii=1:75
+                                 for jj=1:75
+                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
+                                 end
+                             end
+                             for jj=1:75
+                                 Iamge(+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(4);
+                             Rand(4)=Rand(1);
+                             Rand(1)=move;
+                         case 76
+                             while n<=74
+                             for ii=1:75
+                                 for jj=76:150
+                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
+                                 end
+                             end
+                             for jj=76:150
+                                 Iamge(n+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(5);
+                             Rand(5)=Rand(2);
+                             Rand(2)=move;
+                         case 151
+                             while n<=74
+                             for ii=1:75
+                                 for jj=151:225
+                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
+                                 end
+                             end
+                             for jj=151:225
+                                 Iamge(n+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(6);
+                             Rand(6)=Rand(3);
+                             Rand(3)=move;
+                     end
+                 case 151
+                     switch space(2)
+                         case 1
+                             while n<=74
+                             for ii=1:75
+                                 for jj=1:75
+                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
+                                 end
+                             end
+                             for jj=1:75
+                                 Iamge(n+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(7);
+                             Rand(7)=Rand(4);
+                             Rand(4)=move;
+                         case 76
+                             while n<=74
+                             for ii=1:75
+                                 for jj=76:150
+                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
+                                 end
+                             end
+                             for jj=76:150
+                                 Iamge(n+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(8);
+                             Rand(8)=Rand(5);
+                             Rand(5)=move;
+                         case 151
+                             while n<=74
+                             for ii=1:75
+                                 for jj=151:225
+                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
+                                 end
+                             end
+                             for jj=151:225
+                                 Iamge(n+1,jj)=256;
+                             end
+                             image(Image);drawnow
+                             n=n+1;
+                             end
+                             move=Rand(9);
+                             Rand(9)=Rand(6);
+                             Rand(6)=move;   
+                     end
+             end
             space(1)=space(1)-75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
     else
         disp('Wrong botton.Press again!!');
+        disp(BUTTON);
     end
     
-    
-    
-    
-    
+    test=1;
+    for ii=1:9
+        if correctForm(ii)~=Rand(ii)
+            test=2;
+        end
+    endif test==1
+        disp('WELL DONE.YOU ARE FINISH!!!')
+    end
 end
