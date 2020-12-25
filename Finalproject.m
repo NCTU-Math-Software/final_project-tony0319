@@ -1,15 +1,41 @@
-X=imread('aa.jpg');
-image(X);
+again=0;
+while again==0
+   X=imread('aa.jpg');
+   Y=imread('bb.jpg');
+   Z=imread('cc.jpg');
+   V=imread('dd.jpg');
+   disp('Press 1 ,2 ,3 ,4 to choose your picture.');
+   press=1;
+while press==1
+    [~,~,BUTTON] = ginput(1);
+if BUTTON==49
+    Image=X;
+    press=2;
+elseif BUTTON==50
+    Image=Y;
+    press=2;
+elseif BUTTON==51
+    Image=Z;
+    press=2;
+elseif BUTTON==52
+    Image=V;
+    press=2;
+else
+    disp('Wrong button.Press again.');
+end
+end
+
+image(Image);
 disp('Press whitespace to start the game.');
-A=X(1:75,1:75,:);
-B=X(1:75,76:150,:);
-C=X(1:75,151:225,:);
-D=X(76:150,1:75,:);
-E=X(76:150,76:150,:);
-F=X(76:150,151:225,:);
-G=X(151:225,1:75,:);
-H=X(151:225,76:150,:);
-I=X(151:225,151:225,:);
+A=Image(1:75,1:75,:);
+B=Image(1:75,76:150,:);
+C=Image(1:75,151:225,:);
+D=Image(76:150,1:75,:);
+E=Image(76:150,76:150,:);
+F=Image(76:150,151:225,:);
+G=Image(151:225,1:75,:);
+H=Image(151:225,76:150,:);
+I=Image(151:225,151:225,:);
 correctForm=[1 2 3 4 5 6 7 8 9];
 Rand=randperm(9);
 space=[76 76];
@@ -229,9 +255,10 @@ for ii=1:9
         break
     end
 end
-
+step=0;
 while test==2
     n=0;
+    step=step+1;
     [gy,gx,BUTTON] = ginput(1);
     if BUTTON==28        %左
         if space(2)<150
@@ -239,34 +266,55 @@ while test==2
                case 1
                    switch space(2)
                        case 1                    %第一格
-                           while n<74
-                               for jj=1:75
-                                   for ii=1:75
-                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
-                                   end  
-                               end
-                               for ii=1:75
-                                   Iamge(ii,150-n)=256;
-                               end
-                               image(Iamge);drawnow
-                               n=n+1;
-                           end
+                           Image(1:75,61:135,:)=Image(1:75,76:150,:);
+                           Image(1:75,136:150,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,46:120,:)=Image(1:75,61:135,:);
+                           Image(1:75,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,31:105,:)=Image(1:75,46:120,:);
+                           Image(1:75,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,16:90,:)=Image(1:75,31:105,:);
+                           Image(1:75,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,1:75,:)=Image(1:75,16:90,:);
+                           Image(1:75,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75;
+                           
                            move=Rand(1);
                            Rand(1)=Rand(2);
                            Rand(2)=move;
                        case 76       %第二格
-                           while n<74
-                               for jj=1:75
-                                   for ii=1:75
-                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
-                                   end    
-                               end
-                               for ii=1:75
-                                   Iamge(ii,225-n)=256;
-                               end
-                               image(Iamge);drawnow
-                               n=n+1;
-                           end
+                           Image(1:75,136:210,:)=Image(1:75,151:225,:);
+                           Image(1:75,211:225,:)=256;
+                           image(Image);drawnow
+
+
+                           Image(1:75,121:195,:)=Image(1:75,136:210,:);
+                           Image(1:75,196:210,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,106:180,:)=Image(1:75,121:195,:);
+                           Image(1:75,181:195,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,91:165,:)=Image(1:75,106:180,:);
+                           Image(1:75,166:180,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,76:150,:)=Image(1:75,91:165,:);
+                           Image(1:75,151:165,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75;
+                           
                            move=Rand(2);
                            Rand(2)=Rand(3);
                            Rand(3)=move;
@@ -274,34 +322,56 @@ while test==2
                case 76
                    switch space(2)
                        case 1
-                          while n<74
-                               for jj=1:75
-                                   for ii=76:150
-                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
-                                   end  
-                               end
-                               for ii=76:150
-                                   Iamge(ii:150-n)=256;
-                               end
-                                   image(Iamge);drawnow
-                                   n=n+1;
-                           end
+                           Image(76:150,61:135,:)=Image(76:150,76:150,:);
+                           Image(76:150,136:150,:)=256;
+                           image(Image);drawnow
+
+
+                           Image(76:150,46:120,:)=Image(76:150,61:135,:);
+                           Image(76:150,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,31:105,:)=Image(76:150,46:120,:);
+                           Image(76:150,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,16:90,:)=Image(76:150,31:105,:);
+                           Image(76:150,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,1:75,:)=Image(76:150,16:90,:);
+                           Image(76:150,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75; 
+                           
                            move=Rand(4);
                            Rand(4)=Rand(5);
                            Rand(5)=move;
                        case 76
-                            while n<74
-                               for jj=1:75
-                                   for ii=76:150
-                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
-                                   end    
-                               end
-                               for ii=76:150
-                                   Iamge(ii,225-n)=256;
-                               end
-                               image(Iamge);drawnow
-                               n=n+1;
-                           end
+                           Image(76:150,136:210,:)=Image(76:150,151:225,:);
+                           Image(76:150,211:225,:)=256;
+                           image(Image);drawnow
+
+
+                           Image(76:150,121:195,:)=Image(76:150,136:210,:);
+                           Image(76:150,196:210,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,106:180,:)=Image(76:150,121:195,:);
+                           Image(76:150,181:195,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,91:165,:)=Image(76:150,106:180,:);
+                           Image(76:150,166:180,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,76:150,:)=Image(76:150,91:165,:);
+                           Image(76:150,151:165,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75; 
+                           
                            move=Rand(5);
                            Rand(5)=Rand(6);
                            Rand(6)=move;
@@ -309,40 +379,62 @@ while test==2
                case 151
                    switch space(2)
                        case 1
-                          while n<74
-                               for jj=1:75
-                                   for ii=151:225
-                                       Image(ii,73+jj-n)=Image(ii,74+jj-n); 
-                                   end  
-                               end
-                               for ii=151:225
-                                   Iamge(ii,150-n)=256;
-                               end
-                               image(Iamge);drawnow
-                               n=n+1;
-                           end
+                          Image(151:225,61:135,:)=Image(151:225,76:150,:);
+                           Image(151:225,136:150,:)=256;
+                           image(Image);drawnow
+
+
+                           Image(151:225,46:120,:)=Image(151:225,61:135,:);
+                           Image(151:225,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,31:105,:)=Image(151:225,46:120,:);
+                           Image(151:225,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,16:90,:)=Image(151:225,31:105,:);
+                           Image(151:225,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,1:75,:)=Image(151:225,16:90,:);
+                           Image(151:225,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75; 
+                           
                            move=Rand(7);
                            Rand(7)=Rand(8);
                            Rand(8)=move;
                        case 76
-                            while n<74
-                               for jj=1:75
-                                   for ii=151:225
-                                       Image(ii,148+jj-n)=Image(ii,149-jj+n);
-                                   end    
-                               end
-                               for ii=151:225
-                                   Iamge(ii,225-n)=256;
-                               end
-                               image(Iamge);drawnow
-                               n=n+1;
-                           end
+                           Image(151:225,136:210,:)=Image(151:225,151:225,:);
+                           Image(151:225,211:225,:)=256;
+                           image(Image);drawnow
+
+
+                           Image(151:225,121:195,:)=Image(151:225,136:210,:);
+                           Image(151:225,196:210,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,106:180,:)=Image(151:225,121:195,:);
+                           Image(151:225,181:195,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,91:165,:)=Image(151:225,106:180,:);
+                           Image(151:225,166:180,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,76:150,:)=Image(151:225,91:165,:);
+                           Image(151:225,151:165,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)+75; 
+                           
                            move=Rand(8);
                            Rand(8)=Rand(9);
                            Rand(9)=move;
                    end
            end
-           space(2)=space(2)+75;
+           
         else 
             disp('The nove is not allowed.Press again!!')
         end
@@ -353,50 +445,82 @@ while test==2
                 case 76
                     switch space(1)
                         case 1
-                            while n<75
-                            for jj=1:75
-                                for ii=1:75
-                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
-                                end
-                            end
-                            for ii=1:75
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(1:75,16:90,:)=Image(1:75,1:75,:);
+                           Image(1:75,1:15,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,31:105,:)=Image(1:75,16:90,:);
+                           Image(1:75,16:30,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,46:120,:)=Image(1:75,31:105,:);
+                           Image(1:75,31:45,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,61:135,:)=Image(1:75,46:120,:);
+                           Image(1:75,46:60,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,76:150,:)=Image(1:75,61:135,:);
+                           Image(1:75,61:75,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
+                            
+                            
                             move=Rand(2);
                             Rand(2)=Rand(1);
                             Rand(1)=move;
                         case 76
-                            while n<75
-                            for jj=1:75
-                                for ii=76:150
-                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
-                                end
-                            end
-                            for ii=76:150
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(76:150,16:90,:)=Image(76:150,1:75,:);
+                           Image(76:150,1:15,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,31:105,:)=Image(76:150,16:90,:);
+                           Image(76:150,16:30,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,46:120,:)=Image(76:150,31:105,:);
+                           Image(76:150,31:45,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,61:135,:)=Image(76:150,46:120,:);
+                           Image(76:150,46:60,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,76:150,:)=Image(76:150,61:135,:);
+                           Image(76:150,61:75,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
                             move=Rand(5);
                             Rand(5)=Rand(4);
                             Rand(4)=move;
                         case 151
-                            while n<75
-                            for jj=1:75
-                                for ii=151:225
-                                    Iamge(ii,77-jj+n)=Iamge(ii,76-jj+n);
-                                end
-                            end
-                            for ii=151:225
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(151:225,16:90,:)=Image(151:225,1:75,:);
+                           Image(151:225,1:15,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,31:105,:)=Image(151:225,16:90,:);
+                           Image(151:225,16:30,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,46:120,:)=Image(151:225,31:105,:);
+                           Image(151:225,31:45,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,61:135,:)=Image(151:225,46:120,:);
+                           Image(151:225,46:60,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,76:150,:)=Image(151:225,61:135,:);
+                           Image(151:225,61:75,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
                             move=Rand(8);
                             Rand(8)=Rand(7);
                             Rand(7)=move;
@@ -404,56 +528,85 @@ while test==2
                 case 151
                     switch space(1)
                         case 1
-                            while n<75
-                            for jj=1:75
-                                for ii=1:75
-                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
-                                end
-                            end
-                            for ii=1:75
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(1:75,91:165,:)=Image(1:75,76:150,:);
+                           Image(1:75,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,106:180,:)=Image(1:75,91:165,:);
+                           Image(1:75,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,121:195,:)=Image(1:75,106:180,:);
+                           Image(1:75,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,136:210,:)=Image(1:75,121:195,:);
+                           Image(1:75,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(1:75,151:225,:)=Image(1:75,136:210,:);
+                           Image(1:75,136:150,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
                             move=Rand(3);
                             Rand(3)=Rand(2);
                             Rand(2)=move;
                         case 76
-                            while n<75
-                            for jj=1:75
-                                for ii=76:150
-                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
-                                end
-                            end
-                            for ii=76:150
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(76:150,91:165,:)=Image(76:150,76:150,:);
+                           Image(76:150,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,106:180,:)=Image(76:150,91:165,:);
+                           Image(76:150,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,121:195,:)=Image(76:150,106:180,:);
+                           Image(76:150,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,136:210,:)=Image(76:150,121:195,:);
+                           Image(76:150,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(76:150,151:225,:)=Image(76:150,136:210,:);
+                           Image(76:150,136:150,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
                             move=Rand(6);
                             Rand(6)=Rand(5);
                             Rand(5)=move;
                         case 151
-                            while n<75
-                            for jj=1:75
-                                for ii=151:225
-                                    Iamge(ii,152-jj+n)=Iamge(ii,151-jj+n);
-                                end
-                            end
-                            for ii=151:225
-                                Iamge(ii:n+1)=256;
-                            end
-                            image(Iamge);drawnow
-                            n=n+1;
-                            end
+                           Image(151:225,91:165,:)=Image(151:225,76:150,:);
+                           Image(151:225,76:90,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,106:180,:)=Image(151:225,91:165,:);
+                           Image(151:225,91:105,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,121:195,:)=Image(151:225,106:180,:);
+                           Image(151:225,106:120,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,136:210,:)=Image(151:225,121:195,:);
+                           Image(151:225,121:135,:)=256;
+                           image(Image);drawnow
+                           
+                           Image(151:225,151:225,:)=Image(151:225,136:210,:);
+                           Image(151:225,136:150,:)=256;
+                           image(Image);drawnow
+                           
+                           space(2)=space(2)-75;
+                            
                             move=Rand(9);
                             Rand(9)=Rand(8);
                             Rand(8)=move;
                     end
             end
-            space(2)=space(2)-75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
@@ -463,50 +616,80 @@ while test==2
                 case 1
                     switch space(2)
                         case 1
-                            while n<74
-                               for ii=1:75
-                                   for jj=1:75
-                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
-                                   end
-                               end
-                              for jj=1:75
-                                  Iamge(150-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(61:135,1:75,:)=Image(76:150,1:75,:);
+                            Image(136:150,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,1:75,:)=Image(61:135,1:75,:);
+                            Image(121:135,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,1:75,:)=Image(46:120,1:75,:);
+                            Image(106:120,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(16:90,1:75,:)=Image(31:105,1:75,:);
+                            Image(91:105,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(1:75,1:75,:)=Image(16:90,1:75,:);
+                            Image(76:90,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(1);
                             Rand(1)=Rand(4);
                             Rand(4)=move;
                         case 76
-                             while n<74
-                               for ii=1:75
-                                   for jj=76:150
-                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
-                                   end
-                               end
-                              for jj=76:150
-                                  Iamge(150-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(61:135,76:150,:)=Image(76:150,76:150,:);
+                            Image(136:150,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,76:150,:)=Image(61:135,76:150,:);
+                            Image(121:135,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,76:150,:)=Image(46:120,76:150,:);
+                            Image(106:120,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(16:90,76:150,:)=Image(31:105,76:150,:);
+                            Image(91:105,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(1:75,76:150,:)=Image(16:90,76:150,:);
+                            Image(76:90,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(2);
                             Rand(2)=Rand(5);
                             Rand(5)=move;
                         case 151
-                             while n<74
-                               for ii=1:75
-                                   for jj=151:225
-                                       Iamge(ii+74-n,jj)=Iamge(ii+75-n,jj);
-                                   end
-                               end
-                              for jj=151:225
-                                  Iamge(150-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(61:135,151:225,:)=Image(76:150,151:225,:);
+                            Image(136:150,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,151:225,:)=Image(61:135,151:225,:);
+                            Image(121:135,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,151:225,:)=Image(46:120,151:225,:);
+                            Image(106:120,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(16:90,151:225,:)=Image(31:105,151:225,:);
+                            Image(91:105,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(1:75,151:225,:)=Image(16:90,151:225,:);
+                            Image(76:90,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(3);
                             Rand(3)=Rand(6);
                             Rand(6)=move;
@@ -514,56 +697,85 @@ while test==2
                 case 76
                     switch space(2)
                         case 1
-                             while n<74
-                               for ii=1:75
-                                   for jj=1:75
-                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
-                                   end
-                               end
-                              for jj=1:75
-                                  Iamge(225-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(136:210,1:75,:)=Image(151:225,1:75,:);
+                            Image(211:225,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,1:75,:)=Image(136:210,1:75,:);
+                            Image(196:210,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,1:75,:)=Image(121:195,1:75,:);
+                            Image(181:195,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(91:165,1:75,:)=Image(106:180,1:75,:);
+                            Image(166:180,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,1:75,:)=Image(91:165,1:75,:);
+                            Image(151:165,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(4);
                             Rand(4)=Rand(7);
                             Rand(7)=move;
                         case 76
-                            while n<75
-                               for ii=1:75
-                                   for jj=76:150
-                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
-                                   end
-                               end
-                              for jj=76:150
-                                  Iamge(225-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(136:210,76:150,:)=Image(151:225,76:150,:);
+                            Image(211:225,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,76:150,:)=Image(136:210,76:150,:);
+                            Image(196:210,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,76:150,:)=Image(121:195,76:150,:);
+                            Image(181:195,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(91:165,76:150,:)=Image(106:180,76:150,:);
+                            Image(166:180,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,76:150,:)=Image(91:165,76:150,:);
+                            Image(151:165,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(5);
                             Rand(5)=Rand(8);
                             Rand(8)=move;
                         case 151
-                            while n<74
-                               for ii=1:75
-                                   for jj=151:225
-                                       Iamge(ii+149-n,jj)=Iamge(ii+150-n,jj);
-                                   end
-                               end
-                              for jj=151:225
-                                  Iamge(225-n,jj)=256;
-                              end
-                              n=n+1;
-                              image(Image);drawnow
-                            end
+                            Image(136:210,151:225,:)=Image(151:225,151:225,:);
+                            Image(211:225,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,151:225,:)=Image(136:210,151:225,:);
+                            Image(196:210,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,151:225,:)=Image(121:195,151:225,:);
+                            Image(181:195,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(91:165,151:225,:)=Image(106:180,151:225,:);
+                            Image(166:180,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,151:225,:)=Image(91:165,151:225,:);
+                            Image(151:165,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)+75;
+                            
                             move=Rand(6);
                             Rand(6)=Rand(9);
                             Rand(9)=move;
                     end
             end
-            space(1)=space(1)+75;
         else 
             disp('The nove is not allowed.Press again!!')
         end
@@ -573,50 +785,80 @@ while test==2
                  case 76
                      switch space(2)
                          case 1
-                             while n<=74
-                             for ii=1:75
-                                 for jj=1:75
-                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
-                                 end
-                             end
-                             for jj=1:75
-                                 Iamge(+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
+                            Image(16:90,1:75,:)=Image(1:75,1:75,:);
+                            Image(1:15,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,1:75,:)=Image(16:90,1:75,:);
+                            Image(16:30,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,1:75,:)=Image(31:105,1:75,:);
+                            Image(31:45,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(61:135,1:75,:)=Image(46:120,1:75,:);
+                            Image(46:60,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,1:75,:)=Image(61:135,1:75,:);
+                            Image(61:75,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
                              move=Rand(4);
                              Rand(4)=Rand(1);
                              Rand(1)=move;
                          case 76
-                             while n<=74
-                             for ii=1:75
-                                 for jj=76:150
-                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
-                                 end
-                             end
-                             for jj=76:150
-                                 Iamge(n+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
+                            Image(16:90,76:150,:)=Image(1:75,76:150,:);
+                            Image(1:15,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,76:150,:)=Image(16:90,76:150,:);
+                            Image(16:30,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,76:150,:)=Image(31:105,76:150,:);
+                            Image(31:45,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(61:135,76:150,:)=Image(46:120,76:150,:);
+                            Image(46:60,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,76:150,:)=Image(61:135,76:150,:);
+                            Image(61:75,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
                              move=Rand(5);
                              Rand(5)=Rand(2);
                              Rand(2)=move;
                          case 151
-                             while n<=74
-                             for ii=1:75
-                                 for jj=151:225
-                                     Image(77-ii+n,jj)=Iamge(76-ii+n,jj);
-                                 end
-                             end
-                             for jj=151:225
-                                 Iamge(n+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
+                            Image(16:90,151:225,:)=Image(1:75,151:225,:);
+                            Image(1:15,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(31:105,151:225,:)=Image(16:90,151:225,:);
+                            Image(16:30,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(46:120,151:225,:)=Image(31:105,151:225,:);
+                            Image(31:45,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(61:135,151:225,:)=Image(46:120,151:225,:);
+                            Image(46:60,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(76:150,151:225,:)=Image(61:135,151:225,:);
+                            Image(61:75,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
                              move=Rand(6);
                              Rand(6)=Rand(3);
                              Rand(3)=move;
@@ -624,62 +866,94 @@ while test==2
                  case 151
                      switch space(2)
                          case 1
-                             while n<=74
-                             for ii=1:75
-                                 for jj=1:75
-                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
-                                 end
-                             end
-                             for jj=1:75
-                                 Iamge(n+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
-                             move=Rand(7);
-                             Rand(7)=Rand(4);
-                             Rand(4)=move;
+                            Image(91:165,1:75,:)=Image(76:150,1:75,:);
+                            Image(76:90,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,1:75,:)=Image(91:165,1:75,:);
+                            Image(91:105,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,1:75,:)=Image(106:180,1:75,:);
+                            Image(106:120,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(136:210,1:75,:)=Image(121:195,1:75,:);
+                            Image(121:135,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(151:225,1:75,:)=Image(136:210,1:75,:);
+                            Image(136:150,1:75,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
+                            move=Rand(7);
+                            Rand(7)=Rand(4);
+                            Rand(4)=move;
                          case 76
-                             while n<=74
-                             for ii=1:75
-                                 for jj=76:150
-                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
-                                 end
-                             end
-                             for jj=76:150
-                                 Iamge(n+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
-                             move=Rand(8);
-                             Rand(8)=Rand(5);
-                             Rand(5)=move;
+                            Image(91:165,76:150,:)=Image(76:150,76:150,:);
+                            Image(76:90,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,76:150,:)=Image(91:165,76:150,:);
+                            Image(91:105,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,76:150,:)=Image(106:180,76:150,:);
+                            Image(106:120,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(136:210,76:150,:)=Image(121:195,76:150,:);
+                            Image(121:135,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(151:225,76:150,:)=Image(136:210,76:150,:);
+                            Image(136:150,76:150,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
+                            move=Rand(8);
+                            Rand(8)=Rand(5);
+                            Rand(5)=move;
                          case 151
-                             while n<=74
-                             for ii=1:75
-                                 for jj=151:225
-                                     Image(152-ii+n,jj)=Iamge(151-ii+n,jj);
-                                 end
-                             end
-                             for jj=151:225
-                                 Iamge(n+1,jj)=256;
-                             end
-                             image(Image);drawnow
-                             n=n+1;
-                             end
-                             move=Rand(9);
-                             Rand(9)=Rand(6);
-                             Rand(6)=move;   
+                            Image(91:165,151:225,:)=Image(76:150,151:225,:);
+                            Image(76:90,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(106:180,151:225,:)=Image(91:165,151:225,:);
+                            Image(91:105,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(121:195,151:225,:)=Image(106:180,151:225,:);
+                            Image(106:120,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(136:210,151:225,:)=Image(121:195,151:225,:);
+                            Image(121:135,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            Image(151:225,151:225,:)=Image(136:210,151:225,:);
+                            Image(136:150,151:225,:)=256;
+                            image(Image);drawnow
+                            
+                            space(1)=space(1)-75;
+                            
+                            move=Rand(9);
+                            Rand(9)=Rand(6);
+                            Rand(6)=move;   
                      end
              end
-            space(1)=space(1)-75;
-        else 
-            disp('The nove is not allowed.Press again!!')
-        end
+         
+         else
+            disp('The move is not allowed.Press again!!')
+         end
+    elseif BUTTON==27
+             disp("Don't give up,you can try again.");
+             break;    
     else
         disp('Wrong botton.Press again!!');
-        disp(BUTTON);
     end
     
     test=1;
@@ -687,7 +961,26 @@ while test==2
         if correctForm(ii)~=Rand(ii)
             test=2;
         end
-    endif test==1
-        disp('WELL DONE.YOU ARE FINISH!!!')
     end
+    if test==1
+        disp('WELL DONE.YOU ARE FINISH!!!');
+        disp('You have moves ',step,' times');
+        image(X);drawnow
+    end
+end
+
+    disp('Do you want to play again? (Press y for yes and x for no.)');
+    [~,~,BUTTON] = ginput(1);
+    while press==2
+    if BUTTON==120||BUTTON==88
+        again=1;
+        press=1;
+        disp('Thanks for playing');
+    elseif BUTTON==121||BUTTON==89
+        press=1;
+    else
+        disp('Wrong button.Press again.');
+    end
+    end
+    
 end
