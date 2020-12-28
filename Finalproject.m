@@ -243,12 +243,18 @@ for ii=1:9
             end
     end
 end
-
+test=2;
 [gy,gx,BUTTON] = ginput(1);
+while test==2
 if BUTTON==32
+    test=1;
     image(Image);
+    disp('You can press esc when you want to choose the picture again.');
+else 
+    disp('Wrong button.');
 end
-test=1;
+end
+
 for ii=1:9
     if Rand(ii)~=correctForm(ii)
         test=2;
